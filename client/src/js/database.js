@@ -1,6 +1,7 @@
 import { openDB } from 'idb';
 
-const initdb = async () =>
+const initdb = async () => {
+  console.log("Hello from DB")
   openDB('jate', 1, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
@@ -10,12 +11,29 @@ const initdb = async () =>
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
       console.log('jate database created');
     },
-  });
+  })}
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => console.error('putDb not implemented');
+export const putDb = async (content) => {
+  console.log("putdb")
+  const jateDB = await openDB("jate", 1);
+  const tx = jateDB.transaction('jate', 'readwrite');
+  const store = tx.objectStore('jate');
+  const req = store.put({id: 1, value: content})
+  const res = await req
+  console.log("Saved to Idb")
+  await tx.done
+}
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error('getDb not implemented');
+export const getDb = async () => {
+  const jateDB = await openDB("jate", 1)
+  const tx = jateDB.transaction('jate', 'readwrite');
+  const store = tx.objectStore('jate');
+  const content = await store.get(1)
+  console.log("get DB", content)
+  return content
+  await tx.done
+}
 
 initdb();
