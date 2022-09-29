@@ -6,7 +6,7 @@ JATE is a text editor that is meant to be simple to use, and accessible even whe
 
 ## Screenshot
 
-
+![Screenshot of JATE](https://raw.githubusercontent.com/Sm4ck101/homework-19-text-editor/main/jate.jpg)
 
 ## Technologies Used
 
@@ -29,4 +29,4 @@ To invoke the application, run:
 
 ## Links
 
-[Deployed Application](https://www.google.com)
+[Deployed Application](https://radiant-brook-19663.herokuapp.com/)
